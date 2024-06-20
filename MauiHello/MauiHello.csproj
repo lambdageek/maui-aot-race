@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0-ios</TargetFramework>
+		<TargetFrameworks>net8.0-ios;net8.0-android</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
@@ -65,6 +65,13 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\RacingLib\RacingLib.csproj" />
 	</ItemGroup>
+
+        <PropertyGroup>
+            <AndroidStripILAfterAOT>true</AndroidStripILAfterAOT>
+            <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+        </PropertyGroup>
+            
+      
 
         <PropertyGroup>
             <MtouchExtraArgs>--setenv:MONO_LOG_LEVEL=debug --setenv:MONO_LOG_MASK=aot,dll,asm</MtouchExtraArgs>
